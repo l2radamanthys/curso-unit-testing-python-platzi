@@ -20,6 +20,7 @@ class BankAccount:
         if amount < 0:
             raise ValueError("Error no puedes retirar montos negativos.")
         if amount > self.balance:
+            self.__log_transaction(f"Saldo insuficiente, no puedes retirar {amount}, tu balance disponble es {self.balance}")
             raise Exception("Error saldo insuficiente")
         self.balance -= amount
         self.__log_transaction(f"Withdraw: {amount}, new balance {self.balance}")

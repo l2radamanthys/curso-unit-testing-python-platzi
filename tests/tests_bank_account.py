@@ -38,6 +38,7 @@ class BankAccountTest(unittest.TestCase):
         with self.assertRaises(Exception) as context:
             self.account.withdraw(500)
         self.assertIn("saldo insuficiente", str(context.exception))
+        self.assertEqual(self.account.get_log()[-1], "Saldo insuficiente, no puedes retirar 500, tu balance disponble es 400\n")
 
     def test_transfer_to_anoter_account(self):
         self.account.deposit(600)
@@ -56,3 +57,4 @@ class BankAccountTest(unittest.TestCase):
         self.assertEqual(self.account.get_log(), ["Cuenta creada.\n"])
         self.account.deposit(400)
         self.assertEqual(self.account.get_log(), ["Cuenta creada.\n", 'Deposit: 400, new balance 400\n'])
+
