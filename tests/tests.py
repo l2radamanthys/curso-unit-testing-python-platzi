@@ -5,11 +5,11 @@ def calculate_total(products, discount=0):
     total = Decimal('0')
     for product in products:
         total += Decimal(str(product['price']))
-    
+
     discount = Decimal(str(discount))
 
     total -= total * (discount / 100)
-    
+
     # Redondear a 2 decimales
     return float(total.quantize(Decimal('0.01'), rounding=ROUND_HALF_UP))
 
