@@ -1,10 +1,14 @@
 from src.bank_account import BankAccount
 import unittest
-
+import os
 
 class BankAccountTest(unittest.TestCase):
     def setUp(self) -> None:
-        self.account = BankAccount(0)
+        self.account = BankAccount(balance=0, log_file="transactions.log")
+
+    def tearDown(self) -> None:
+        if self.account.log_file and os.path.exists(self.account.log_file):
+            os.remove(self.account.log_file)
 
     def test_initialize_account(self):
         self.assertEqual(self.account.get_balance(), 0)
@@ -42,3 +46,13 @@ class BankAccountTest(unittest.TestCase):
         self.assertTrue(transfer_result)
         self.assertEqual(self.account.get_balance(), 100)
         self.assertEqual(other_account.get_balance(), 500)
+
+    def test_transaction_log_exist(self):
+        self.account.deposit(400)
+        self.assertTrue(os.path.exists(self.account.log_file))
+        self.assertIsNotNone(self.account.get_log())
+
+    def test_transactions_log_size(self):
+        self.assertEqual(self.account.get_log(), ["Cuenta creada.\n"])
+        self.account.deposit(400)
+        self.assertEqual(self.account.get_log(), ["Cuenta creada.\n", 'Deposit: 400, new balance 400\n'])
