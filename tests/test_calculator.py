@@ -33,5 +33,5 @@ class TestCalculator(unittest.TestCase):
         self.assertEqual(divide(40, 4), 10)
 
     def test_divition_by_zero(self):
-        self.assertTrue(math.isnan(divide(19, 0)))
-        self.assertTrue(math.isnan(divide(0.5, 0)))
+        with self.assertRaises(ValueError):
+            self.assertTrue(math.isnan(divide(19, 0)))

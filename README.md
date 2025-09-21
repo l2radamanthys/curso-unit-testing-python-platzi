@@ -44,6 +44,13 @@ python -m unittest tests.test_bank_account.BankAccountTest
 python -m unittest tests.test_bank_account.BankAccountTest.test_withdraw
 ```
 
+
+## Pruebas con doc test
+
+```python
+python -m doctest src/calculadora.py
+```
+
 ---
 
 ## 📝 Notas
