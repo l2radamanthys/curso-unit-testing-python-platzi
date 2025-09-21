@@ -30,8 +30,8 @@ class BankAccountTest(unittest.TestCase):
     def test_witdraw_negative_amount(self):
         self.account.deposit(400)
         with self.assertRaises(ValueError) as context:
-            self.account.deposit(-100)
-        self.assertIn("no puedes depositar montos negativos", str(context.exception))
+            self.account.withdraw(-100)
+        self.assertIn("no puedes retirar montos negativos", str(context.exception))
 
     def test_withdraw_amount_gt_balance(self):
         self.account.deposit(400)

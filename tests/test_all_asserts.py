@@ -1,4 +1,5 @@
 import unittest
+import sys
 
 SERVER = "Local"
 
@@ -41,3 +42,7 @@ class AllAssertsTest(unittest.TestCase):
     @unittest.expectedFailure
     def test_expected_failure(self):
         self.assertEqual(100, 150)
+
+    @unittest.skipUnless(sys.platform.startswith("linux"), "Solo corre en Linux")
+    def test_solo_linux(self):
+        self.assertTrue(True)
