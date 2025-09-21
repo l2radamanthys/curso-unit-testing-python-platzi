@@ -143,3 +143,15 @@ class BankAccountTest(unittest.TestCase):
         self.account.deposit(400)
         with self.assertRaises(WithdrawDateRestrictionError):
             self.account.withdraw(100)
+
+    def test_deposit_with_multiple_amounts(self):
+        test_cases = [
+            {"amount": 100, "expected": 1100},
+            {"amount": 3000, "expected": 4000},
+            {"amount": 4500, "expected": 5500},
+        ]
+        for case in test_cases:
+            with self.subTest(case=case):
+                self.account = BankAccount(balance=1000, log_file="log.log")
+                new_balance = self.account.deposit(case.get("amount"))
+                self.assertEqual(new_balance, case.get("expected"))
