@@ -4,21 +4,6 @@ Este repositorio contiene prácticas del curso de **Unit Testing en Python**, ut
 
 ---
 
-## 📂 Estructura del proyecto
-
-```
-curso-unit-testing-python/
-├── src/
-│   └── bank_account.py
-├── tests/
-│   ├── __init__.py
-│   ├── test_bank_account.py
-│   └── suites.py
-└── README.md
-```
-
----
-
 ## ⚡️ Ejecutar Tests
 
 ### 1. Ejecutar todos los tests
