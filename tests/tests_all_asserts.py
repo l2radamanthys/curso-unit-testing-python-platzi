@@ -1,5 +1,6 @@
 import unittest
 
+SERVER = "Local"
 
 class AllAssertsTest(unittest.TestCase):
     def test_assert_equal(self):
@@ -28,3 +29,15 @@ class AllAssertsTest(unittest.TestCase):
 
     def test_assert_list(self):
         self.assertListEqual([1, 2, 3, 4], [1, 2, 3, 4])
+
+    @unittest.skip("Trabajo en progreso queda pendiente")
+    def test_skip(self):
+        self.assertEqual("Hola", "Mundo")
+
+    @unittest.skipIf(SERVER != "PRODUCTION", "Saltada porque no estamos en el servidor")
+    def test_skip_if(self):
+        self.assertEqual(100, 100)
+
+    @unittest.expectedFailure
+    def test_expected_failure(self):
+        self.assertEqual(100, 150)
