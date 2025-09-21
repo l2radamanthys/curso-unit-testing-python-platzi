@@ -1,5 +1,5 @@
 import datetime as dt
-from src.exceptions import InsufficientFundsError, WithdrawlTimeRestrictionError
+from src.exceptions import InsufficientFundsError, WithdrawlTimeRestrictionError, WithdrawDateRestrictionError
 
 
 class BankAccount:
@@ -22,7 +22,10 @@ class BankAccount:
 
     def withdraw(self, amount):
         now = dt.datetime.now()
-        if now.hour < 8 or now.hour > 17:
+        if now.weekday() >= 5:  # no permitir retiros los sabados y domingos
+            raise WithdrawDateRestrictionError("Error no puedes hacer retiros los sabados y domingos.")
+
+        if now.hour < 8 or now.hour > 17:  # solo se permiten retiros en horario comercial
             raise WithdrawlTimeRestrictionError("Los retiros son permitidos entre las 8 y las 17")
 
         if amount < 0:

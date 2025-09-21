@@ -5,3 +5,6 @@ class InsufficientFundsError(Exception):
 class WithdrawlTimeRestrictionError(Exception):
     pass
 
+
+class WithdrawDateRestrictionError(Exception):
+    pass
