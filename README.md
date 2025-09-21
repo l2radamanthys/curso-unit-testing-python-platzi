@@ -1,14 +1,15 @@
 # Practicas Curso UnitTesting en Python - Platzi
 
+## UnitTest
 
+Ejecutar tests
 
-Ejecutar test unitest
-
-```
+```python
 pipenv run python -m unittest discover -s tests
 ```
 
-Ejecutar test modo verbose
-```
+Ejecutar tests en modo verbose
+
+```python
 pipenv run python -m unittest discover -v -s tests
 ```

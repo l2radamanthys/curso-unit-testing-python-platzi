@@ -1,0 +1,30 @@
+import unittest
+
+
+class AllAssertsTest(unittest.TestCase):
+    def test_assert_equal(self):
+        self.assertEqual(10, 10)
+        self.assertEqual("hola", "hola")
+        self.assertNotEqual(10, 5)
+
+    def test_assert_true_or_false(self):
+        self.assertTrue(True)
+        self.assertFalse(False)
+
+    def test_assert_exception(self):
+        with self.assertRaises(Exception):
+            int("no_soy_un_numero")
+
+    def test_assert_in(self):
+        self.assertIn(10, [20, 5, 10, 6])
+        self.assertNotIn(7, [20, 5, 10, 6])
+
+    def test_assert_dict_equal(self):
+        user = {"first_name": "luis", "last_name": "martinez"}
+        self.assertDictEqual(user, {"first_name": "luis", "last_name": "martinez"})
+
+    def test_assert_set(self):
+        self.assertSetEqual({1, 3, 4}, {1, 4, 3})
+
+    def test_assert_list(self):
+        self.assertListEqual([1, 2, 3, 4], [1, 2, 3, 4])
