@@ -33,12 +33,6 @@ class ApiClientTest(unittest.TestCase):
                 }
             )
         ]
-        # mock_get.return_value.status_code = 200
-        # mock_get.return_value.json.return_value = {
-        #     "countryName": "United States",
-        #     "regionName": "America",
-        #     "cityName": "California",
-        # }
 
         with self.assertRaises(requests.exceptions.RequestException):
             get_location("8.8.8.8")
@@ -47,9 +41,6 @@ class ApiClientTest(unittest.TestCase):
         self.assertEqual(result.get("country"), "United States")
         self.assertEqual(result.get("region"), "America")
         self.assertEqual(result.get("city"), "California")
-
-
-
 
     @mock.patch("src.api_client.requests.get")
     def test_get_public_ip_return_expeted(self, mock_get):

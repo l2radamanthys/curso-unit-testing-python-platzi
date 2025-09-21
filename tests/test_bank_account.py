@@ -1,6 +1,9 @@
 from src.bank_account import BankAccount
+from src.exceptions import InsufficientFundsError, WithdrawlTimeRestrictionError
 import unittest
 import os
+from unittest.mock import patch
+
 
 class BankAccountTest(unittest.TestCase):
     def setUp(self) -> None:
@@ -35,7 +38,7 @@ class BankAccountTest(unittest.TestCase):
 
     def test_withdraw_amount_gt_balance(self):
         self.account.deposit(400)
-        with self.assertRaises(Exception) as context:
+        with self.assertRaises(InsufficientFundsError) as context:
             self.account.withdraw(500)
         self.assertIn("saldo insuficiente", str(context.exception))
         self.assertEqual(self.account.get_log()[-1], "Saldo insuficiente, no puedes retirar 500, tu balance disponble es 400\n")
@@ -58,3 +61,23 @@ class BankAccountTest(unittest.TestCase):
         self.account.deposit(400)
         self.assertEqual(self.account.get_log(), ["Cuenta creada.\n", 'Deposit: 400, new balance 400\n'])
 
+    @patch("src.bank_account.dt.datetime")
+    def test_withdraw_during_bussines_hours(self, mock_datetime):
+        mock_datetime.now.return_value.hour = 10
+        self.account.deposit(400)
+        self.account.withdraw(100)
+        self.assertEqual(self.account.get_balance(), 300)
+
+    @patch("src.bank_account.dt.datetime")
+    def test_withdraw_disallow_before_bussines_hours(self, mock_datetime):
+        mock_datetime.now.return_value.hour = 7
+        self.account.deposit(400)
+        with self.assertRaises(WithdrawlTimeRestrictionError):
+            self.account.withdraw(100)
+
+    @patch("src.bank_account.dt.datetime")
+    def test_withdraw_disallow_after_bussines_hours(self, mock_datetime):
+        mock_datetime.now.return_value.hour = 19
+        self.account.deposit(400)
+        with self.assertRaises(WithdrawlTimeRestrictionError):
+            self.account.withdraw(100)
