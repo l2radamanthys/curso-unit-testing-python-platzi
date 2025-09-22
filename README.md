@@ -51,6 +51,12 @@ python -m unittest tests.test_bank_account.BankAccountTest.test_withdraw
 python -m doctest src/calculadora.py
 ```
 
+## Pytest
+
+```python
+pytest tests/test_pytest.py
+```
+
 ## Coverage
 
 
