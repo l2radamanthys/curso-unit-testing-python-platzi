@@ -4,8 +4,9 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-ipdb = "*"
-requests = "*"
+ipdb = "==0.13.13"
+requests = "==2.32.5"
+faker = "==37.8.0"
 
 [dev-packages]
 

@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "033c851bba6b491feba14c7d24ea0bb49ab7b5d3102ffbd5b496e30354bd0e7f"
+            "sha256": "e0c4260b57890d7cdcdb8d7ca4054ccd79548844c29fcf7ae90c4548781ebd1d"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -133,6 +133,15 @@
             "markers": "python_version >= '3.8'",
             "version": "==2.2.1"
         },
+        "faker": {
+            "hashes": [
+                "sha256:090bb5abbec2b30949a95ce1ba6b20d1d0ed222883d63483a0d4be4a970d6fb8",
+                "sha256:b08233118824423b5fc239f7dd51f145e7018082b4164f8da6a9994e1f1ae793"
+            ],
+            "index": "pypi",
+            "markers": "python_version >= '3.9'",
+            "version": "==37.8.0"
+        },
         "idna": {
             "hashes": [
                 "sha256:12f65c9b470abda6dc35cf8e63cc574b1c52b11df2c86030af0ac09b01b13ea9",
@@ -252,6 +261,14 @@
             "markers": "python_version >= '3.8'",
             "version": "==5.14.3"
         },
+        "tzdata": {
+            "hashes": [
+                "sha256:1a403fada01ff9221ca8044d701868fa132215d84beb92242d9acd2147f667a8",
+                "sha256:b60a638fcc0daffadf82fe0f57e53d06bdec2f36c4df66280ae79bce6bd6f2b9"
+            ],
+            "markers": "python_version >= '2'",
+            "version": "==2025.2"
+        },
         "urllib3": {
             "hashes": [
                 "sha256:3fc47733c7e419d4bc3f6b3dc2b4f890bb743906a30d56ba4a5bfa4bbff92760",
@@ -262,10 +279,11 @@
         },
         "wcwidth": {
             "hashes": [
-                "sha256:3da69048e4540d84af32131829ff948f1e022c1c6bdb8d6102117aac784f6859",
-                "sha256:72ea0c06399eb286d978fdedb6923a9eb47e1c486ce63e9b4e64fc18303972b5"
+                "sha256:4d478375d31bc5395a3c55c40ccdf3354688364cd61c4f6adacaa9215d0b3605",
+                "sha256:a7bb560c8aee30f9957e5f9895805edd20602f2d7f720186dfd906e82b4982e1"
             ],
-            "version": "==0.2.13"
+            "markers": "python_version >= '3.6'",
+            "version": "==0.2.14"
         }
     },
     "develop": {}

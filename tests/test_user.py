@@ -1,0 +1,34 @@
+import unittest
+from faker import Faker
+from src.user import User
+from src.bank_account import BankAccount
+import os
+
+
+class UserTest(unittest.TestCase):
+    def setUp(self) -> None:
+        self.faker = Faker(locale="es")
+        self.user = User(name=self.faker.name(), email=self.faker.email())
+
+    def tearDown(self) -> None:
+        for account in self.user.accounts:
+            os.remove(account.log_file)
+
+    def test_user_creation(self):
+        name_generated = self.faker.name()
+        email_generated = self.faker.email()
+        user = User(name=name_generated, email=email_generated)
+        self.assertEqual(user.name, name_generated)
+        self.assertEqual(user.email, email_generated)
+
+    def test_user_with_multiple_accounts(self):
+        expeted_value = 0
+        for _ in range(3):
+            balance_generated = self.faker.random_int(min=100, max=2000, step=50)
+            bank_account = BankAccount(
+                balance=balance_generated,
+                log_file=self.faker.file_name(extension="log")
+            )
+            expeted_value += balance_generated
+            self.user.add_account(bank_account)
+        self.assertEqual(expeted_value, self.user.get_total_balance())
