@@ -16,3 +16,4 @@ postgres_volume/
 releases/
 storage/
 *.ipynb
+/htmlcov

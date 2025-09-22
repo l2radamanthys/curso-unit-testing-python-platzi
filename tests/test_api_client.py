@@ -2,6 +2,8 @@ import unittest
 from unittest import mock
 from src.api_client import get_location, get_public_ip
 import requests
+from unittest.mock import patch
+
 
 class ApiClientTest(unittest.TestCase):
     @mock.patch("src.api_client.requests.get")
@@ -49,3 +51,9 @@ class ApiClientTest(unittest.TestCase):
         ip = get_public_ip()
         self.assertEqual(ip, "127.0.0.1")
         mock_get.assert_called_once_with("https://api.ipify.org")
+
+    @patch("src.api_client.requests.get")  # simulamos requests.get
+    def test_get_public_ip_exception(self, mock_get):
+        mock_get.side_effect = requests.exceptions.RequestException("falló la conexión")
+        result = get_public_ip()
+        self.assertIsNone(result)

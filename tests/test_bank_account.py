@@ -155,3 +155,8 @@ class BankAccountTest(unittest.TestCase):
                 self.account = BankAccount(balance=1000, log_file="log.log")
                 new_balance = self.account.deposit(case.get("amount"))
                 self.assertEqual(new_balance, case.get("expected"))
+
+    def test_bank_account_without_log(self):
+        acount = BankAccount(balance=100)
+        acount.deposit(100)
+        self.assertEqual(acount.get_log(), None)
