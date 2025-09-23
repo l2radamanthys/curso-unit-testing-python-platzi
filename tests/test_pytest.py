@@ -15,3 +15,9 @@ def test_deposit_with_multiple_amounts(amount, expected):
     account = BankAccount(balance=1000, log_file="log.log")
     new_balance = account.deposit(amount)
     assert new_balance == expected
+
+
+def test_deposit_with_negative_amount():
+    account = BankAccount(balance=1000, log_file="log.log")
+    with pytest.raises(ValueError):
+        account.deposit(-100)
